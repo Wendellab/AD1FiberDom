@@ -39,8 +39,8 @@ row.names(counts.D.raw) <- counts.D.raw[,1]; counts.D.raw <- counts.D.raw[,-1]
 colnames(counts.D.raw) <- sapply(strsplit(file.names.D,split = "[.]"),"[[",1)
 
 #reorganize so that samples are in correct order (5,10,15,20 dpa)
-counts.A.raw <- counts.A.raw[,c(4,1:3,8,5:7,12,9:11,17,14:16,21,18:20,25,13,23,24)]
-counts.D.raw <- counts.D.raw[,c(4,1:3,8,5:7,12,9:11,17,14:16,21,18:20,25,13,23,24)]
+counts.A.raw <- counts.A.raw[,c(4,1:3,8,5:7,12,9:11,16,13:15,20,17:19,24,21:23)]
+counts.D.raw <- counts.D.raw[,c(4,1:3,8,5:7,12,9:11,16,13:15,20,17:19,24,21:23)]
 
 #rename genes so that they are A or D copy
 A.names <- paste(rownames(counts.A.raw),"A",sep="_")
@@ -73,7 +73,7 @@ pdf("AD1.part.blind.rlog.pdf")
 plot(assay(AD.part.rlog)[,1:2],pch=16, cex=0.3)
 dev.off()
 pdf("AD1.part.blind.PCA.pdf")
-plotPCA(AD.part.rlog, intgroup = c("cult", "timepoint"), ntop = 0)
+plotPCA(AD.part.rlog, intgroup = c("cult", "timepoint"))
 dev.off()
 
 AD1.part.dds <- DESeq(AD1.part.dds)
